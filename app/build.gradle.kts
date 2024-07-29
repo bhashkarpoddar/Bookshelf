@@ -36,6 +36,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        dataBinding = true
+        buildConfig = true
+    }
     // Allow references to generated code
     kapt {
         correctErrorTypes = true
