@@ -18,4 +18,7 @@ interface BooksDao {
 
     @Update
     suspend fun updateBook(book: BookEntity)
+
+    @Query("SELECT * FROM Books WHERE id = :bookId")
+    suspend fun getBook(bookId: Int): LiveData<BookEntity?>
 }

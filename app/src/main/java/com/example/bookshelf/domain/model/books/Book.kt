@@ -1,7 +1,7 @@
 package com.example.bookshelf.domain.model.books
 
 data class Book(
-    val id: String,
+    val id: Int,
     val title: String,
     val description: List<String>,
     val publisher: String,

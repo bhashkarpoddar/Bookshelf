@@ -9,10 +9,10 @@ import javax.inject.Inject
 class BookRepositoryImpl @Inject constructor(private val remoteSource: RemoteSource): BookRepository {
     override suspend fun books(): NetworkResult<BooksDTO> {
 
-        return when (val localResult = local.getMovie(movieId)) {
+        /*return when (val localResult = local.getMovie(movieId)) {
             is Success -> localResult
             is Error -> remote.getMovie(movieId)
-        }
+        }*/
 
         return remoteSource.books()
     }
