@@ -14,11 +14,14 @@ interface BooksDao {
     fun books(): LiveData<List<BookEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllBooks(books: List<BookEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBook(book: BookEntity)
 
     @Update
     suspend fun updateBook(book: BookEntity)
 
     @Query("SELECT * FROM Books WHERE id = :bookId")
-    suspend fun getBook(bookId: Int): LiveData<BookEntity?>
+    fun getBookById(bookId: Int): LiveData<BookEntity?>
 }

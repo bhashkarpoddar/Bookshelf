@@ -1,5 +1,6 @@
 package com.example.bookshelf.data.dto.books
 
+import com.example.bookshelf.data.entity.books.BookEntity
 import com.example.bookshelf.domain.model.books.Book
 
 data class BookDTO(
@@ -17,10 +18,19 @@ data class BookDTO(
 )
 
 fun BookDTO.toDomain() = Book(
-    id = this.id.toString(),
+    id = this.id,
     title = this.Title.orEmpty(),
-    description = this.Notes.orEmpty(),
+    description = this.Notes.joinToString(),
     publisher = this.Publisher.orEmpty(),
     author = this.author.orEmpty(),
+    year = this.Year.toString()
+)
+
+fun BookDTO.toEntity() = BookEntity(
+    id = this.id,
+    title = this.Title.orEmpty(),
+    description = this.Notes.joinToString(),
+    publisher = this.Publisher.orEmpty(),
+    author = "Stephen King",
     year = this.Year.toString()
 )
