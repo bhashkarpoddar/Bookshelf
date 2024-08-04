@@ -1,6 +1,6 @@
 package com.example.bookshelf.utils
 
-import com.example.bookshelf.domain.model.networkResult.NetworkResult
+import com.example.bookshelf.domain.model.networkResult.ResponseResult
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONArray
@@ -20,11 +20,11 @@ inline fun <reified T : Any> String.fromJsonToObjectList() : MutableList <T> =  
 
 fun JSONArray.toMutableList(): MutableList<Any> = MutableList(length(), this::get)
 
-inline fun <T> safeNetworkCall(action: () -> NetworkResult<T>): NetworkResult<T> {
+inline fun <T> safeCall(action: () -> ResponseResult<T>): ResponseResult<T> {
     return try {
         action()
     } catch (e: Exception) {
         e.printStackTrace()
-        NetworkResult.Failure(message = e.message!!, throwable = e)
+        ResponseResult.Failure(message = e.message!!, throwable = e)
     }
 }

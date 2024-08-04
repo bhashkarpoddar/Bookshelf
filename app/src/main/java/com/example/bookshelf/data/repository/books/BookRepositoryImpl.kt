@@ -5,12 +5,12 @@ import com.example.bookshelf.data.datasource.local.LocalDataSource
 import com.example.bookshelf.data.datasource.remote.RemoteSource
 import com.example.bookshelf.data.dto.books.BooksDTO
 import com.example.bookshelf.data.entity.books.BookEntity
-import com.example.bookshelf.domain.model.networkResult.NetworkResult
+import com.example.bookshelf.domain.model.networkResult.ResponseResult
 import com.example.bookshelf.domain.repository.books.BookRepository
 import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(private val remoteSource: RemoteSource, private val localDataSource: LocalDataSource): BookRepository {
-    override suspend fun refreshBooks(): NetworkResult<BooksDTO> = remoteSource.books()
+    override suspend fun refreshBooks(): ResponseResult<BooksDTO> = remoteSource.books()
 
     override suspend fun books(): LiveData<List<BookEntity>> = localDataSource.books()
 

@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.bookshelf.R
 import com.example.bookshelf.databinding.FragmentBooksBinding
 import com.example.bookshelf.domain.model.books.Book
@@ -74,7 +76,7 @@ class BooksFragment : Fragment() {
     private fun initAdapter() {
         booksAdapter = BooksAdapter(books, object : BooksAdapter.OnInteraction{
             override fun onEditClick(book: Book, position: Int) {
-
+                findNavController().navigate(R.id.addEditBookFragment, bundleOf("bookId" to book.id.toString()))
             }
 
             override fun onItemClick(book: Book, position: Int) {
